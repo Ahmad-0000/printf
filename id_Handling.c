@@ -27,7 +27,9 @@ int id_handling(va_list myPtr, int theArgNum)
 		a[j] = (i % 10) + '0';
 		i /= 10;
 	}
-	a[j] = theSign == -1 ? '-' : a[j--];
+	a[j] = theSign == -1 ? '-' : a[j];
+	if (theSign != -1)
+		j--;
 	for (i = 0; j >= 0; j--)
 	{
 		write(1, &a[j], 1);
