@@ -6,6 +6,3 @@ int s_Handling(va_list ptr);
 int c_Handling(va_list ptr);
 int NormalText(const char *theFormat, int j, int *thePchar);
 #endif
-
-
-

@@ -10,9 +10,13 @@ int s_Handling(va_list myPtr)
 {
 	int i = 0;
 	char *c = va_arg(myPtr, char *);
+	char *s = "(null)";
 
 	if (c == NULL)
-		exit(-1);
+	{
+		write(1, &s[0], 6);
+		return (6);
+	}
 	while (c[i] != '\0')
 	{
 		write(1, &c[i], 1);
