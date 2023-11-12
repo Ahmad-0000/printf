@@ -13,7 +13,7 @@ int _printf(const char *theFormat, ...)
 	va_list myPtr;
 
 	if (theFormat == NULL)
-		exit(1);
+		exit(-1);
 	va_start(myPtr, theFormat);
 	while (theFormat[i] != '\0')
 	{
@@ -37,9 +37,10 @@ int _printf(const char *theFormat, ...)
 			}
 			else
 			{
-				exit(1);
+				exit(-1);
 			}
 		}
 	}
+	va_end(myPtr);
 	return (thePchar);
 }

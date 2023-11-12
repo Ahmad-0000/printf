@@ -11,6 +11,6 @@ int c_Handling(va_list myPtr)
 	int c = va_arg(myPtr, int);
 
 	if (c < 0 || c > 127)
-		exit(1);
+		exit(-1);
 	return (write(1, &c, 1));
 }
