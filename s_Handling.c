@@ -10,7 +10,6 @@ int s_Handling(va_list myPtr)
 {
 	int i = 0;
 	char *c = va_arg(myPtr, char *);
-	char *s = "(null)";
 
 	if (c == NULL)
 		return (-1);
