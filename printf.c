@@ -37,8 +37,7 @@ int _printf(const char *theFormat, ...)
 			}
 			else
 			{
-				write(1, &theFormat[i], 2);
-				j = i += 2;
+				return (-1);
 			}
 		}
 	}
