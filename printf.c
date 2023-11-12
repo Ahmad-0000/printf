@@ -9,36 +9,23 @@
  */
 int _printf(const char *theFormat, ...)
 {
-	int i = 0, j = 0, thePchar = 0;
+	int i = 0, j = 0, thePchar = 0, theArgNum, tmp;
 	va_list myPtr;
 
 	if (theFormat == NULL)
 		return (-1);
+	theArgNum = argCounting(theFormat);
 	va_start(myPtr, theFormat);
 	while (theFormat[i] != '\0')
 	{
 		i = NormalText(theFormat, j, &thePchar);
+		tmp = thePchar;
 		if (theFormat[i] == '%')
 		{
-			if (theFormat[i + 1] == 'c')
-			{
-				thePchar += c_Handling(myPtr);
-				j = i += 2;
-			}
-			else if (theFormat[i + 1] == 's')
-			{
-				thePchar += s_Handling(myPtr);
-				j = i += 2;
-			}
-			else if (theFormat[i + 1] == '%')
-			{
-				thePchar += write(1, &theFormat[i + 1], 1);
-				j = i += 2;
-			}
-			else
-			{
+			thePchar += opDeterminer(theFormat, &theArgNum, i, myPtr);
+			if (thePchar < tmp)
 				return (-1);
-			}
+			j = i += 2;
 		}
 	}
 	va_end(myPtr);

@@ -4,13 +4,16 @@
 /**
  * c_Handling - is a function to handle characters in printf
  * @myPtr: is a pointer to the the character
+ * @theArgNum: is the number of the expected arguments
  * Return: is to return the number of characters that are printed
  */
-int c_Handling(va_list myPtr)
+int c_Handling(va_list myPtr, int theArgNum)
 {
 	int c = va_arg(myPtr, int);
 	char c0 = '\0';
 
+	if (theArgNum < 0)
+		return (-1);
 	if (c < 0 || c > 127)
 	{
 		if (c < 0)

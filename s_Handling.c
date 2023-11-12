@@ -4,14 +4,17 @@
 /**
  * s_Handling - is a function to handle strings in printf
  * @myPtr: is a pointer to the string
+ * @theArgNum: is the number of the expected arguments
  * Return: is to return the length of the string
  */
-int s_Handling(va_list myPtr)
+int s_Handling(va_list myPtr, int theArgNum)
 {
 	int i = 0;
 	char *c = va_arg(myPtr, char *);
 	char *s = "(null)";
 
+	if (theArgNum < 0)
+		return (-1);
 	if (c == NULL)
 	{
 		write(1, &s[0], 6);
