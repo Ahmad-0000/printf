@@ -12,7 +12,7 @@ char theCaseFun(char x, unsigned long int xx)
 		return ('0');
 	if (x == 'x')
 		return ('a' - 10);
-	if (x == 'X')
+	else
 		return ('A' - 10);
 }
 /**
@@ -25,7 +25,7 @@ char theCaseFun(char x, unsigned long int xx)
 int xX_Handling(va_list myPtr, int theArgNum, char theCase)
 {
 	unsigned long int i;
-	int j, k;
+	int j, k = 0;
 	char a[100];
 
 	if (theArgNum < 0)
@@ -37,7 +37,7 @@ int xX_Handling(va_list myPtr, int theArgNum, char theCase)
 		i /= 16;
 	}
 	j--;
-	for (k = 0; j >= 0; j--)
+	for (; j >= 0; j--)
 	{
 		write(1, &a[j], 1);
 		k++;
