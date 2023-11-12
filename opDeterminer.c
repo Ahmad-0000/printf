@@ -12,16 +12,24 @@
  */
 int opDeterminer(const char *theFormat, int *theArgNum, int i, va_list myPtr)
 {
-	if (theFormat[i + 1] == 'c')
+	char c = theFormat[i + 1];
+
+	if (c == 'c')
 		return (c_Handling(myPtr, --(*theArgNum)));
-	else if (theFormat[i + 1] == 's')
+	else if (c == 's')
 		return (s_Handling(myPtr, --(*theArgNum)));
-	else if (theFormat[i + 1] == '%')
+	else if (c == '%')
 		return (write(1, &theFormat[i + 1], 1));
-	else if (theFormat[i + 1] == 'd' || theFormat[i + 1] == 'i')
+	else if (c == 'd' || c == 'i')
 		return (id_handling(myPtr, --(*theArgNum)));
-	else if (theFormat[i + 1] == 'b')
+	else if (c == 'u')
+		return (u_Handling(myPtr, --(*theArgNum)));
+	else if (c == 'b')
 		return (binaryHandling(myPtr, --(*theArgNum)));
+	else if (c == 'o')
+		return (o_Handling(myPtr, --(*theArgNum)));
+	else if (c == 'x' || c == 'X')
+		return (xX_Handling(myPtr, --(*theArgNum), c));
 	else
 		return (-1);
 }
