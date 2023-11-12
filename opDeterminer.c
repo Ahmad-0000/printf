@@ -20,6 +20,8 @@ int opDeterminer(const char *theFormat, int *theArgNum, int i, va_list myPtr)
 		return (write(1, &theFormat[i + 1], 1));
 	else if (theFormat[i + 1] == 'd' || theFormat[i + 1] == 'i')
 		return (id_handling(myPtr, --(*theArgNum)));
+	else if (theFormat[i + 1] == 'b')
+		return (binaryHandling(myPtr, --(*theArgNum)));
 	else
 		return (-1);
 }
