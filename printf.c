@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <stdarg.h>
+#include <stdlib.h>
 #include "main.h"
 /**
  * _printf - is a mini printf
@@ -11,8 +12,10 @@ int _printf(const char *theFormat, ...)
 	int i = 0, j = 0, thePchar = 0;
 	va_list myPtr;
 
+	if (theFormat == NULL)
+		exit(1);
 	va_start(myPtr, theFormat);
-	while (theFormat != NULL && theFormat[i] != '\0')
+	while (theFormat[i] != '\0')
 	{
 		i = NormalText(theFormat, j, &thePchar);
 		if (theFormat[i] == '%')
@@ -31,6 +34,10 @@ int _printf(const char *theFormat, ...)
 			{
 				thePchar += write(1, &theFormat[i + 1], 1);
 				j = i += 2;
+			}
+			else
+			{
+				exit(1);
 			}
 		}
 	}

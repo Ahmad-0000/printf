@@ -8,9 +8,9 @@
  */
 int NormalText(const char *theFormat, int j, int *thePchar)
 {
-	int k = 0, i = j;
+	int k, i = j;
 
-	for (; theFormat[i] != '%' && theFormat[i] != '\0'; i++)
+	for (k = 0; theFormat[i] != '%' && theFormat[i] != '\0'; i++)
 		k++;
 	*thePchar += k;
 	write(1, (theFormat + j), k);
