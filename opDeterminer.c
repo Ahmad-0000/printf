@@ -33,5 +33,5 @@ int opDeterminer(const char *F, int *A, int *fp, va_list P, char *mb, int *bp)
 	else if (c == 'x' || c == 'X')
 		return (xX_Handling(P, --(*A), c, fp, mb, bp));
 	else
-		return (-1);
+		return (finally(c, fp, mb, bp));
 }

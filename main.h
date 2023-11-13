@@ -14,4 +14,5 @@ int o_Handling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp);
 int binaryHandling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp);
 int xX_Handling(va_list myPtr, int A, char C, int *fp, char *mb, int *bp);
 void printing(char *theBuffer, int *bp);
+int finally(char c, int *fp, char *mb, int *bp);
 #endif
