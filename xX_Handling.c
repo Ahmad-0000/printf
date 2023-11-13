@@ -18,29 +18,34 @@ char theCaseFun(char x, unsigned long int xx)
 /**
  * xX_Handling - is a function to handle hexadecimals
  * @myPtr: is to pull the hexadecimal
- * @theArgNum: is to determine the number of the left arguments to print
- * @theCase: is to determine wheter to apply a..f or A..F in the hexadecimal
+ * @A: is to determine the number of the left arguments to print
+ * @C: is to determine wheter to apply a..f or A..F in the hexadecimal
+ * @fp: is to specifiy the place in the format string
+ * @mb: it's a 1024 array to write in
+ * @bp: to determine the place in the array
  * Return: is to return the number of the printed characters
  */
-int xX_Handling(va_list myPtr, int theArgNum, char theCase)
+int xX_Handling(va_list myPtr, int A, char C, int *fp, char *mb, int *bp)
 {
 	unsigned long int i;
-	int j, k = 0;
+	int j = 0, k = 0;
 	char a[100];
 
-	if (theArgNum < 0)
+	if (A < 0)
 		return (-1);
+	if (*bp >= 1024)
+		return (0);
 	i = va_arg(myPtr, unsigned long int);
-	for (j = 0; i; j++)
-	{
-		a[j] = i % 16 +	theCaseFun(theCase, i % 16);
+	do {
+		a[j++] = i % 16 + theCaseFun(C, i % 16);
 		i /= 16;
-	}
+	} while (i);
 	j--;
-	for (; j >= 0; j--)
+	for (; j >= 0 && *bp < 1024; j--)
 	{
-		write(1, &a[j], 1);
+		mb[(*bp)++] = a[j];
 		k++;
 	}
+	*fp += 2;
 	return (k);
 }
