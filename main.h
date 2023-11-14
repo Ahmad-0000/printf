@@ -1,11 +1,14 @@
 #ifndef THISFILE
 #define THISFILE
 #include <stdarg.h>
+#include <unistd.h>
 int _printf(const char *theFormat, ...);
+int OD(char c, va_list A);
+int _strlen(char *c);
 int s_Handling(va_list ptr, int theArgNum, int *fp, char *mb, int *bp);
 int c_Handling(va_list ptr, int theArgNum, int *fp, char *mb, int *bp);
 int per_Handling(int *fp, char *mb, int *bp);
-int NormalText(const char *F, int *fp, int *pc, char *mb, int *bp);
+void NormalText(const char *F, int *fp, int *pc, char *mb, int *bp);
 int argCounting(const char *theFormat);
 int opDeterminer(const char *F, int *A, int *fp, va_list P, char *bm, int *bp);
 int id_handling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp);
