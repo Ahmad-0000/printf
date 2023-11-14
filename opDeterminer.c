@@ -30,6 +30,10 @@ int opDeterminer(const char *F, int *A, int *fp, va_list P, char *mb, int *bp)
 		return (o_Handling(P, --(*A), fp, mb, bp));
 	else if (c == 'x' || c == 'X')
 		return (xX_Handling(P, --(*A), c, fp, mb, bp));
+	else if (c == 'S')
+		return (S_Handling(P, --(*A), fp, mb, bp));
+	else if (c == 'p')
+		return (pointers(P, --(*A), fp, mb, bp));
 	else
 		return (finally(c, fp, mb, bp));
 }

@@ -16,5 +16,8 @@ int o_Handling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp);
 int binaryHandling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp);
 int xX_Handling(va_list myPtr, int A, char C, int *fp, char *mb, int *bp);
 void printing(char *theBuffer, int *bp);
+int S_Handling(va_list myPtr, int A, int *fp, char *mb, int *bp);
+char theCaseFun(char x, unsigned long int xx);
+int pointers(va_list myPtr, int A, int *fp, char *mb, int *bp);
 int finally(char c, int *fp, char *mb, int *bp);
 #endif
