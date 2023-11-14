@@ -3,7 +3,6 @@
 #include <stdarg.h>
 #include <unistd.h>
 int _printf(const char *theFormat, ...);
-int OD(char c, va_list A);
 int _strlen(char *c);
 int s_Handling(va_list ptr, int theArgNum, int *fp, char *mb, int *bp);
 int c_Handling(va_list ptr, int theArgNum, int *fp, char *mb, int *bp);

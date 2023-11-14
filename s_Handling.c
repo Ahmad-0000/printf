@@ -1,6 +1,4 @@
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdlib.h>
+#include "main.h"
 /**
  * s_Handling - is a function to handle strings in printf
  * @myPtr: is a pointer to the string
@@ -12,21 +10,22 @@
  */
 int s_Handling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp)
 {
-	int i = 0;
-	char *c = va_arg(myPtr, char *);
-	char *s = "(null)";
+	int i = 0, theLength;
+	char *c;
 
 	if (theArgNum < 0)
 		return (-1);
 	if (*bp < 1024)
 	{
+		c = va_arg(myPtr, char *);
 		if (c == NULL)
 		{
-			while (s[i] != '\0')
-				mb[*(bp)++] = s[i++];
 			(*fp) += 2;
-			return (6);
+			return (-1);
 		}
+		theLength = _strlen(c);
+		if ((*bp + theLength) > 1024)
+			printing(mb, bp);
 		while (c[i] != '\0')
 			mb[(*bp)++] = c[i++];
 		(*fp) += 2;

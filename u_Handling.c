@@ -1,5 +1,4 @@
-#include <stdarg.h>
-#include <unistd.h>
+#include "main.h"
 /**
  * u_Handling - is a function to handle the unsigned integers
  * @myPtr: is to pull the unsigned interger
@@ -13,20 +12,19 @@ int u_Handling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp)
 {
 	unsigned int u;
 	int r = 0, i = 0;
-	char a[10];
+	char a[15];
 
 	if (theArgNum < 0)
 		return (-1);
-	if (*bp >= 1024)
-		return (0);
 	u = va_arg(myPtr, unsigned int);
 	do {
-		a[i] = u % 10 + '0';
+		a[i++] = u % 10 + '0';
 		u /= 10;
-		i++;
 	} while (u);
 	i--;
-	for (; i >= 0 && *bp < 1024; i--)
+	if ((i + 1 + *bp) > 1024)
+		printing(mb, bp);
+	for (; i >= 0; i--)
 	{
 		mb[(*bp)++] = a[i];
 		r++;

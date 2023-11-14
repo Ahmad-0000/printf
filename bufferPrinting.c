@@ -1,4 +1,4 @@
-#include <unistd.h>
+#include "main.h"
 /**
  * printing - is to print 1024 array when it is full or the
  *	'\0' in the format string was reached

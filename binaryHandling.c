@@ -1,5 +1,4 @@
-#include <stdarg.h>
-#include <unistd.h>
+#include "main.h"
 /**
  * binaryHandling - is a function to convert an unsigned int to binary
  * @myPtr: is to pull the number
@@ -16,15 +15,15 @@ int binaryHandling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp)
 
 	if (theArgNum < 0)
 		return (-1);
-	if (*bp >= 1024)
-		return (0);
 	theNum = va_arg(myPtr, unsigned int);
 	do {
 		a[j++] = theNum % 2 + '0';
 		theNum /= 2;
 	} while (theNum);
 	j--;
-	for (i = 0; j >= 0 && *bp < 1024; j--)
+	if ((j + 1 + *bp) > 1024)
+		printing(mb, bp);
+	for (i = 0; j >= 0; j--)
 	{
 		mb[(*bp)++] = a[j];
 		i++;

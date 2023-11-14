@@ -1,5 +1,3 @@
-#include <stdarg.h>
-#include <unistd.h>
 #include "main.h"
 /**
  * opDeterminer - is to determine the argument to print

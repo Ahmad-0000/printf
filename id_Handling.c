@@ -1,5 +1,4 @@
-#include <stdarg.h>
-#include <unistd.h>
+#include "main.h"
 /**
  * id_handling - is a function to handle the (i) and (d) conversion specifiers
  * @myPtr: is to pull the next argument
@@ -12,31 +11,25 @@
  */
 int id_handling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp)
 {
-	int i, theSign, j;
-	char a[11];
+	int i, theSign, j = 0, theLength;
+	char a[15];
 
 	if (theArgNum < 0)
 		return (-1);
-	if (*bp >= 1024)
-		return (0);
 	i = va_arg(myPtr, int);
 	theSign = i < 0 ? -1 : 1;
-	if (i == 0)
-	{
-		mb[(*bp)++] = '0';
-		*fp += 2;
-		return (1);
-	}
 	i = i < 0 ? -i : i;
-	for (j = 0; i; j++)
-	{
-		a[j] = (i % 10) + '0';
+	do {
+		a[j++] = (i % 10) + '0';
 		i /= 10;
-	}
+	} while (i);
 	a[j] = theSign == -1 ? '-' : a[j];
 	if (theSign != -1)
 		j--;
-	for (i = 0; j >= 0 && *bp < 1024; j--)
+	theLength = _strlen(a);
+	if ((theLength + *bp) > 1024)
+		printing(mb, bp);
+	for (i = 0; j >= 0; j--)
 	{
 		mb[(*bp)++] = a[j];
 		i++;

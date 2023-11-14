@@ -1,5 +1,4 @@
-#include <stdarg.h>
-#include <unistd.h>
+#include "main.h"
 /**
  * theCaseFun - is a function to apply a..f or A..F in the hexadecimal
  * @x: is to choose the format
@@ -33,15 +32,15 @@ int xX_Handling(va_list myPtr, int A, char C, int *fp, char *mb, int *bp)
 
 	if (A < 0)
 		return (-1);
-	if (*bp >= 1024)
-		return (0);
 	i = va_arg(myPtr, unsigned long int);
 	do {
 		a[j++] = i % 16 + theCaseFun(C, i % 16);
 		i /= 16;
 	} while (i);
 	j--;
-	for (; j >= 0 && *bp < 1024; j--)
+	if ((j + 1 + *bp) > 1024)
+		printing(mb, bp);
+	for (; j >= 0; j--)
 	{
 		mb[(*bp)++] = a[j];
 		k++;

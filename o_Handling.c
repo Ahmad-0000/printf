@@ -1,5 +1,4 @@
-#include <stdarg.h>
-#include <unistd.h>
+#include "main.h"
 /**
  * o_Handling - is a function to handle octals
  * @myPtr: is to pull the octal
@@ -17,16 +16,15 @@ int o_Handling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp)
 
 	if (theArgNum < 0)
 		return (-1);
-	if (*bp >= 1024)
-		return (0);
 	o = va_arg(myPtr, unsigned long int);
 	do {
-		a[i] = o % 8 + '0';
+		a[i++] = o % 8 + '0';
 		o /= 8;
-		i++;
 	} while (o);
 	i--;
-	for (; i >= 0 && *bp < 1024; i--)
+	if ((i + 1 + *bp) > 1024)
+		printing(mb, bp);
+	for (; i >= 0; i--)
 	{
 		mb[(*bp)++] = a[i];
 		j++;

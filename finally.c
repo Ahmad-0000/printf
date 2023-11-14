@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * finally - is to handle unknown specifiers
  * @c: is the unkonwn conversion spcifier
@@ -9,17 +10,10 @@
  */
 int finally(char c, int *fp, char *mb, int *bp)
 {
-	int i = 0;
-
-	if (*bp >= 1024)
-		return (0);
+	if ((*bp + 2) > 1024)
+		printing(mb, bp);
 	mb[(*bp)++] = '%';
-	i++;
-	if (*bp < 1024)
-	{
-		mb[(*bp)++] = c;
-		i++;
-	}
+	mb[(*bp)++] = c;
 	*fp += 2;
-	return (i);
+	return (2);
 }
