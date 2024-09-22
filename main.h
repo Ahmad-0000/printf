@@ -3,22 +3,22 @@
 #define BUFFER_SIZE 1024
 #include <stdarg.h>
 #include <unistd.h>
-int _printf(const char *theFormat, ...);
+int _printf(const char *fmt, ...);
 int _strlen(char *c);
-int s_Handling(va_list ptr, int theArgNum, int *fp, char *mb, int *bp);
-int c_Handling(va_list ptr, int theArgNum, int *fp, char *mb, int *bp);
-int per_Handling(int *fp, char *mb, int *bp);
-void NormalText(const char *F, int *fp, int *pc, char *mb, int *bp);
-int argCounting(const char *theFormat);
-int opDeterminer(const char *F, int *A, int *fp, va_list P, char *bm, int *bp);
-int id_handling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp);
-int u_Handling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp);
-int o_Handling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp);
-int binaryHandling(va_list myPtr, int theArgNum, int *fp, char *mb, int *bp);
-int xX_Handling(va_list myPtr, int A, char C, int *fp, char *mb, int *bp);
-void printing(char *theBuffer, int *bp);
-int S_Handling(va_list myPtr, int A, int *fp, char *mb, int *bp);
+int s_Handling(va_list ptr, int argnum, int *fpos, char *mb, int *bpos);
+int c_Handling(va_list ptr, int argnum, int *fpos, char *mb, int *bpos);
+int per_Handling(int *fpos, char *mb, int *bpos);
+void NormalText(const char *F, int *fpos, int *pc, char *mb, int *bpos);
+int countargs(const char *fmt);
+int opDeterminer(const char *F, int *A, int *fpos, va_list P, char *bm, int *bpos);
+int id_handling(va_list ap, int argnum, int *fpos, char *mb, int *bpos);
+int u_Handling(va_list ap, int argnum, int *fpos, char *mb, int *bpos);
+int o_Handling(va_list ap, int argnum, int *fpos, char *mb, int *bpos);
+int binaryHandling(va_list ap, int argnum, int *fpos, char *mb, int *bpos);
+int xX_Handling(va_list ap, int A, char C, int *fpos, char *mb, int *bpos);
+void printing(char *buff, int *bpos);
+int S_Handling(va_list ap, int A, int *fpos, char *mb, int *bpos);
 char theCaseFun(char x, unsigned long int xx);
-int pointers(va_list myPtr, int A, int *fp, char *mb, int *bp);
-int finally(char c, int *fp, char *mb, int *bp);
+int pointers(va_list ap, int A, int *fpos, char *mb, int *bpos);
+int finally(char c, int *fpos, char *mb, int *bpos);
 #endif
