@@ -17,11 +17,9 @@ int hands(conspc_t *conspc, char *buff, int *bpos, va_list ap)
 	int mod = FALSE; /* is the original string modified */
 	char *str, *newstr;
 
-	/*if (theArgNum < 0)1
-		return (-1);*/
 	str = va_arg(ap, char *);
 	if (str == NULL)
-		return (-1);
+		str = "(null)";
 	newstr = str;
 	conspc->len = _strlen(str);
 	if ((*bpos + conspc->len + conspc->width) > BUFFER_SIZE)
