@@ -39,11 +39,13 @@ int handpsh(conspc_t *conspc, int *bpos, char *arrep, int *arpos)
 		{
 			*bpos -= 1;
 			conspc->len--;
+			return(-1);
 		}
 		else if (cs == 'x' || cs == 'X')
 		{
 			*bpos -= 2;
 			conspc->len -= 2;
+			return (-2);
 		}
 	}
 	return (0);
