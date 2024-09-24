@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * _printf - is a mini printf
@@ -8,31 +9,38 @@
 
 int _printf(const char *fmt, ...)
 {
-	int fpos = 0, wrtnchar = 0, argnum, tmp, bpos = 0;
+	int wrtnchar = 0, tmp, bpos = 0;
 	va_list ap;
-	char buf[1024];
+	char buff[BUFFER_SIZE];
+	conspc_t *conspc; /* conversion specification */
+	int (*csfun)(conspc_t *conspc, char *buff, int *bpos, va_list ap);
 
 	if (fmt == NULL)
 		return (-1);
-	argnum = argCounting(fmt);
 	va_start(ap, fmt);
-	while (fmt[fpos] != '\0')
+	while (*fmt != '\0')
 	{
-		NormalText(fmt, &fpos, &wrtnchar, buf, &bpos);
+		handnormal(&fmt, &wrtnchar, buff, &bpos);
 		tmp = wrtnchar;
-		if (fmt[fpos] == '%')
+		if (*fmt == '%')
 		{
-			wrtnchar += opDeterminer(fmt, &argnum, &fpos, ap, buf, &bpos);
-			if (wrtnchar < tmp)
+			fmt++;
+			conspc = getcs(&fmt);
+			csfun = getcsfun(conspc->cs);
+			if (csfun)
 			{
-				va_end(ap);
-				return (-1);
+				wrtnchar += csfun(conspc, buff, &bpos, ap);
+				if (wrtnchar < tmp)
+				{
+					va_end(ap);
+					return (-1);
+				}
 			}
 		}
-		if (bpos > 1023)
-			printing(buf, &bpos);
+		if (bpos > BUFFER_SIZE - 1)
+			_fflush(buff, &bpos);
 	}
-	printing(buf, &bpos);
+	_fflush(buff, &bpos);
 	va_end(ap);
 	return (wrtnchar);
 }
