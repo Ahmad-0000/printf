@@ -40,6 +40,8 @@ int handxX(conspc_t *conspc, char *buff, int *bpos, va_list ap)
 	*bpos += 1;
 	wrtnchar = 2;
 	conspc->len += _strlen(arrep) + 2;
+	if (!num)
+		conspc->fg3 = 0;
 	wrtnchar += handwidth(conspc, buff, bpos, arrep, arpos);
 	free(conspc);
 	return (wrtnchar);

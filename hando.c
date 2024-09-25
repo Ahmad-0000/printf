@@ -36,6 +36,8 @@ int hando(conspc_t *conspc, char *buff, int *bpos, va_list ap)
 	wrtnchar += 1;
 	conspc->len++;
 	conspc->len += _strlen(arrep);
+	if (!num)
+		conspc->fg3 = 0;
 	wrtnchar += handwidth(conspc, buff, bpos, arrep, arpos);
 	free(conspc);
 	return (wrtnchar);
