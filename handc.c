@@ -14,6 +14,7 @@
 int handc(conspc_t *conspc, char *buff, int *bpos, va_list ap)
 {
 	int c;
+	int wrtnchar = 0;
 
 	c = va_arg(ap, int);
 	conspc->len = 1;
@@ -23,7 +24,7 @@ int handc(conspc_t *conspc, char *buff, int *bpos, va_list ap)
 		_fflush(buff, bpos);
 	if (conspc->fg1 == '0')
 		conspc->fg1 = 0;
-	handwidth(conspc, buff, bpos, (char *)&c, 0);
+	wrtnchar = handwidth(conspc, buff, bpos, (char *)&c, 0);
 	free(conspc);
-	return (1);
+	return (wrtnchar);
 }
