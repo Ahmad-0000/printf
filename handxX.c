@@ -27,6 +27,8 @@ int handxX(conspc_t *conspc, char *buff, int *bpos, va_list ap)
 		num = va_arg(ap, unsigned) % 65536;
 	else
 		num = va_arg(ap, unsigned);
+	if (!num)
+		conspc->fg3 = 0;
 	do {
 		arrep[arpos++] = num % 16 + xorX(conspc->cs, num % 16);
 		num /= 16;
@@ -40,8 +42,6 @@ int handxX(conspc_t *conspc, char *buff, int *bpos, va_list ap)
 	*bpos += 1;
 	wrtnchar = 2;
 	conspc->len += _strlen(arrep) + 2;
-	if (!num)
-		conspc->fg3 = 0;
 	wrtnchar += handwidth(conspc, buff, bpos, arrep, arpos);
 	free(conspc);
 	return (wrtnchar);

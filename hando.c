@@ -23,6 +23,8 @@ int hando(conspc_t *conspc, char *buff, int *bpos, va_list ap)
 		num = va_arg(ap, unsigned) % 65536;
 	else
 		num = va_arg(ap, unsigned);
+	if (!num)
+		conspc->fg3 = 0;
 	arpos = 0;
 	do {
 		arrep[arpos++] = num % 8 + '0';
@@ -36,8 +38,6 @@ int hando(conspc_t *conspc, char *buff, int *bpos, va_list ap)
 	wrtnchar += 1;
 	conspc->len++;
 	conspc->len += _strlen(arrep);
-	if (!num)
-		conspc->fg3 = 0;
 	wrtnchar += handwidth(conspc, buff, bpos, arrep, arpos);
 	free(conspc);
 	return (wrtnchar);
