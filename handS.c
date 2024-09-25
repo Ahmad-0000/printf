@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * S_Handling - is a function to handle the special S conversion specifier
@@ -56,9 +55,9 @@ int handS(conspc_t *conspc, char *buff, int *bpos, va_list ap)
 				}
 				else
 				{
-					newstr[j + 2] = hex % 16 + xorX('X', hex % 16);
-					hex /= 16;
 					newstr[j + 1] = hex % 16 + xorX('X', hex % 16);
+					hex /= 16;
+					newstr[j] = hex % 16 + xorX('X', hex % 16);
 					j += 2;
 				}
 			}
